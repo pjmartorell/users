@@ -39,7 +39,7 @@
 },
   "systemTintColor": "blue",
   "analyticsURL": "http://localhost:5000/ahoy",
-  "analyticsApiKey": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImV4cCI6IjE2OTc5MTU5MzgifQ.j6aABjX6XQbBf5ucYWB0rCfFNn9vS0zCbKQssVfCEaw",
+  "analyticsApiKey": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImV4cCI6IjE2OTc5MTU5ODAifQ.bZq3PI_GPN9NAjSvQ1oxQpVVZB-35XiV39sIbIGbBFA",
   "networkService": {
     "type": "io.app-rail.app-rail-data.Service",
     "properties": {
