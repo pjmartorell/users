@@ -1,0 +1,49 @@
+{
+  "id": 2,
+  "name": "Test",
+  "gatherAnalytics": true,
+  "servers": [
+    {
+      "id": 3,
+      "url": "https://example.com"
+    }
+  ],
+  "locales": [],
+  "steps": [
+    {
+  "id": "a180a510-84ff-4368-8da5-62cc9b0027ae",
+  "position": {
+    "x": 553,
+    "y": 325
+  },
+  "type": "networkList",
+  "links": [
+
+  ],
+  "properties": {
+    "title": "Users",
+    "model": "Users",
+    "text": "JH2Vx9rrzyFsvg7elh9Z5Zoop2j09IVP",
+    "detailText": "JH2Vx9rrzyFsvg7elh9Z5Zoop2j09IVP",
+    "url": "https://f8e2-31-4-135-81.eu.ngrok.io/api/v1/apps/2/app_rail_data/steps/a180a510-84ff-4368-8da5-62cc9b0027ae/list"
+  }
+}
+  ],
+  "navigation": {
+  "style": "list",
+  "list": [
+    {
+      "step": "a180a510-84ff-4368-8da5-62cc9b0027ae"
+    }
+  ]
+},
+  "systemTintColor": "blue",
+  "analyticsURL": "http://localhost:5000/ahoy",
+  "analyticsApiKey": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOjIsImV4cCI6IjE2OTc5MTU5MzgifQ.j6aABjX6XQbBf5ucYWB0rCfFNn9vS0zCbKQssVfCEaw",
+  "networkService": {
+    "type": "io.app-rail.app-rail-data.Service",
+    "properties": {
+  "openApiSpecVersion": "0.0.1"
+}
+  }
+}

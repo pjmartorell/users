@@ -1,0 +1,62 @@
+on:
+  push:
+    branches:
+      - master
+  
+jobs:
+  build:
+    runs-on: macos-12
+    name: Testflight
+    steps:
+
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+
+# Option to use a custom certificate
+# 1. Import Certificate to your keychain
+# 2. Export to P12 and set password
+# 3. Set <Company>_DIST_CERT_PASSWORD Github Secret
+# 4. Set <Company>_DIST_CERT_BASE64 Github Secret to `base64 -i Certificates.p12 | pbcopy`
+
+    - name: Import Certificate
+      id: codesign-cert
+      uses: Apple-Actions/import-codesign-certs@v1
+      with:
+        p12-file-base64: ${{ secrets.FW_DIST_CERT_BASE64 }}
+        p12-password: ${{ secrets.FW_DIST_CERT_P12_PASSWORD }}
+        
+# Option to override the App environment (including OAuth values)
+#    - name: Env Set
+#       id: env-set
+#       env:
+#         CLIENT_ID: ${{ secrets.OAUTH2_CLIENT_ID }}
+#         CLIENT_SECRET: ${{ secrets.OAUTH2_CLIENT_SECRET }}
+#         SERVER_URL:   # URL to point the app to
+#         PROJECT_NAME: # Name of the project folder
+#       run: CLIENT_ID=$CLIENT_ID CLIENT_SECRET=$CLIENT_SECRET SERVER_URL=$SERVER_URL PROJECT_NAME=$PROJECT_NAME rake env_set
+
+    - name: Build, Sign and Testflight Upload
+      uses: FutureWorkshops/testflight_action@v2
+      with:
+        itc_app_apple_id: ''
+        provisioning_profile_name: "Test"
+        app_workspace: "Test.xcworkspace"
+        app_scheme: "Test"
+        team_id: "${{ secrets.FW_APPLE_TEAM_ID }}"
+        bundle_id: "com.fws.users"
+        certificate_owner: "Future Workshops Ltd"
+        itc_email: "matt@futureworkshops.com"
+        itc_key_id: "${{ secrets.FW_ITC_KEY_ID }}"
+        itc_issuer_id: "${{ secrets.FW_ITC_ISSUER_ID }}"
+        itc_key: "${{ secrets.FW_ITC_SECRET_KEY }}"
+
+# More info on installing Apple certificates on Github Actions runners https://docs.github.com/en/actions/guides/installing-an-apple-certificate-on-macos-runners-for-xcode-development
+
+# Option to archive the IPA file into Github
+    # - name: Archive IPA
+    #   uses: actions/upload-artifact@v2
+    #   with:
+    #     name: app-${{ github.run_number }}.ipa
+    #     path: ${{ github.workspace }}/build/*.ipa
